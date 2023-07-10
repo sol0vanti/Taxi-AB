@@ -7,7 +7,7 @@ class ViewController: UIViewController, MKMapViewDelegate, UIGestureRecognizerDe
     @IBOutlet var destinationTextField: UITextField!
     @IBOutlet var mapView: MKMapView!
     
-    private var finalDestinationSet = false
+    private var finalDestinationSet: Bool = false
     private let finalDestinationPin = MyPointAnnotation()
     private var currentLocation: CLLocationCoordinate2D?
     private var finalDestinationCoordinate: CLLocationCoordinate2D?
