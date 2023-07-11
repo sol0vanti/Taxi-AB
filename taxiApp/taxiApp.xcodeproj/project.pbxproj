@@ -7,19 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FA201E222A5D852E00DA3F4D /* taxiDriver.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA201E212A5D852E00DA3F4D /* taxiDriver.swift */; };
 		FA78DF602A5AA6CF005F4F5D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA78DF5F2A5AA6CF005F4F5D /* AppDelegate.swift */; };
 		FA78DF622A5AA6CF005F4F5D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA78DF612A5AA6CF005F4F5D /* SceneDelegate.swift */; };
 		FA78DF642A5AA6CF005F4F5D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA78DF632A5AA6CF005F4F5D /* ViewController.swift */; };
 		FA78DF672A5AA6CF005F4F5D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA78DF652A5AA6CF005F4F5D /* Main.storyboard */; };
 		FA78DF692A5AA6D0005F4F5D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA78DF682A5AA6D0005F4F5D /* Assets.xcassets */; };
 		FA78DF6C2A5AA6D0005F4F5D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA78DF6A2A5AA6D0005F4F5D /* LaunchScreen.storyboard */; };
-		FA79DEFB2A5D40D100CD2B44 /* TarifButtonWithImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA79DEFA2A5D40D000CD2B44 /* TarifButtonWithImage.swift */; };
 		FA83EB9C2A5B43550027FFDE /* ShopingDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA83EB9B2A5B43550027FFDE /* ShopingDetailViewController.swift */; };
 		FAD2E6EE2A5AB8B10012E581 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD2E6ED2A5AB8B10012E581 /* LocationManager.swift */; };
 		FAE9EA652A5AE12A00BD2EFF /* MyPointAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE9EA642A5AE12A00BD2EFF /* MyPointAnnotation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		FA201E212A5D852E00DA3F4D /* taxiDriver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = taxiDriver.swift; sourceTree = "<group>"; };
 		FA78DF5C2A5AA6CF005F4F5D /* taxiApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = taxiApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA78DF5F2A5AA6CF005F4F5D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FA78DF612A5AA6CF005F4F5D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -28,7 +29,6 @@
 		FA78DF682A5AA6D0005F4F5D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FA78DF6B2A5AA6D0005F4F5D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FA78DF6D2A5AA6D0005F4F5D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FA79DEFA2A5D40D000CD2B44 /* TarifButtonWithImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TarifButtonWithImage.swift; sourceTree = "<group>"; };
 		FA83EB9B2A5B43550027FFDE /* ShopingDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopingDetailViewController.swift; sourceTree = "<group>"; };
 		FAD2E6ED2A5AB8B10012E581 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		FAE9EA642A5AE12A00BD2EFF /* MyPointAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPointAnnotation.swift; sourceTree = "<group>"; };
@@ -106,7 +106,7 @@
 				FA78DF682A5AA6D0005F4F5D /* Assets.xcassets */,
 				FAD2E6ED2A5AB8B10012E581 /* LocationManager.swift */,
 				FAE9EA642A5AE12A00BD2EFF /* MyPointAnnotation.swift */,
-				FA79DEFA2A5D40D000CD2B44 /* TarifButtonWithImage.swift */,
+				FA201E212A5D852E00DA3F4D /* taxiDriver.swift */,
 			);
 			path = Helping;
 			sourceTree = "<group>";
@@ -187,7 +187,7 @@
 				FA78DF642A5AA6CF005F4F5D /* ViewController.swift in Sources */,
 				FA78DF602A5AA6CF005F4F5D /* AppDelegate.swift in Sources */,
 				FA83EB9C2A5B43550027FFDE /* ShopingDetailViewController.swift in Sources */,
-				FA79DEFB2A5D40D100CD2B44 /* TarifButtonWithImage.swift in Sources */,
+				FA201E222A5D852E00DA3F4D /* taxiDriver.swift in Sources */,
 				FA78DF622A5AA6CF005F4F5D /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

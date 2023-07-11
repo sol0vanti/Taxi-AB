@@ -1,19 +1,26 @@
 import UIKit
 
-class ShopingDetailViewController: ViewController {
-    @IBOutlet var sectionDetailLabel: UILabel!
+class ShopingDetailViewController: UIViewController {
+    @IBOutlet var totalPriceLabel: UILabel!
+    @IBOutlet var distanceLabel: UILabel!
+    
+    private let taxiTarif = 47
+    public var distance: Int = 0
+    private var totalPrice: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let economyTarifButton = TarifButtonWithImage(frame: CGRect(x: 0, y: 0, width: 220, height: 55))
-        view.addSubview(economyTarifButton)
-        economyTarifButton.center = view.center
-        economyTarifButton.configure(with: TarifButtonWithImageViewModel(tarifCost: "4.2", tarifType: "Economy", tarifImage: "$"))
-        
-        let tarifButton = TarifButtonWithImage(frame: CGRect(x: 0, y: 40, width: 220, height: 55))
-        view.addSubview(tarifButton)
-        tarifButton.center = view.center
-        tarifButton.configure(with: TarifButtonWithImageViewModel(tarifCost: "6.7", tarifType: "Middle Class", tarifImage: "$$"))
+        calculateDistance()
+        calculatePrice()
+    }
+    
+    func calculatePrice() {
+        totalPrice = distance * taxiTarif
+        totalPriceLabel.text = "\(totalPrice ?? 0)₴"
+    }
+    
+    func calculateDistance() {
+        distance = distance/1000
+        distanceLabel.text = "\(distance)km"
     }
 }

@@ -13,16 +13,35 @@ class ViewController: UIViewController, MKMapViewDelegate, UIGestureRecognizerDe
     
     private var finalDestinationSet: Bool = false
     private let finalDestinationPin = MyPointAnnotation()
-    private var currentLocation: CLLocationCoordinate2D?
     private var finalDestinationCoordinate: CLLocationCoordinate2D?
     private let finalDestinationDefaultText: String = "To:"
+    
+    private var userPin = MyPointAnnotation()
+    private var userCoordinate: CLLocationCoordinate2D?
+    
+    private var currentLocation: CLLocationCoordinate2D?
     private var state: ControllerState = .needRoute
+    private var destinationCountry: String = ""
+    
+    public var distance: Int?
+    
+    let driver = taxiDriver(
+        name: "Alex Balla",
+        coordinate: CLLocationCoordinate2D(latitude: 40.897032, longitude: -74.251874),
+        identifier: "driver"
+    )
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         mapView.delegate = self
         mapView.mapType = .mutedStandard
+        
+        let driverPin = MyPointAnnotation()
+        driverPin.coordinate = driver.coordinate
+        driverPin.title = "Driver"
+        driverPin.identifier = driver.identifier
+        mapView.addAnnotation(driverPin)
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "reset", style: .done, target: self, action: #selector(resetDestination))
         navigationItem.rightBarButtonItem?.isHidden = true
@@ -31,13 +50,14 @@ class ViewController: UIViewController, MKMapViewDelegate, UIGestureRecognizerDe
             DispatchQueue.main.async {
                 guard let strongSelf = self else { return }
                 
-                let pin = MyPointAnnotation()
+                self?.userPin = MyPointAnnotation()
                 self!.currentLocation = location.coordinate
-                pin.coordinate = self!.currentLocation!
-                pin.title = "Your Location"
-                pin.identifier = "current-location"
+                self!.userCoordinate = self!.currentLocation!
+                self!.userPin.coordinate = self!.userCoordinate!
+                self!.userPin.title = "Your Location"
+                self!.userPin.identifier = "current-location"
                 strongSelf.mapView.setRegion(MKCoordinateRegion(center: location.coordinate, span: MKCoordinateSpan(latitudeDelta: 0.7, longitudeDelta: 0.7)), animated: true)
-                strongSelf.mapView.addAnnotation(pin)
+                strongSelf.mapView.addAnnotation(self!.userPin)
             }
         }
         
@@ -90,6 +110,7 @@ class ViewController: UIViewController, MKMapViewDelegate, UIGestureRecognizerDe
                         print(pm.subThoroughfare ?? "")
                         
                         var addressString : String = ""
+                        destinationCountry = pm.country ?? "not a country"
                         
                         if pm.subLocality != nil {
                             addressString = addressString + pm.subLocality! + ", "
@@ -121,16 +142,37 @@ class ViewController: UIViewController, MKMapViewDelegate, UIGestureRecognizerDe
         }
     }
     
+    // MARK: viewFor Annotation
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         guard let annotation = annotation as? MyPointAnnotation else { return nil }
         
         let annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: "annotation")
         if annotation.identifier == "current-location" {
-            annotationView.markerTintColor = .systemCyan
+            annotationView.markerTintColor = .systemPink
         } else if annotation.identifier == "final-destination" {
-            annotationView.markerTintColor = .systemRed
+            annotationView.markerTintColor = .systemCyan
+        } else if annotation.identifier == "driver" {
+            annotationView.markerTintColor = .systemYellow
+            let identifier = "driver"
+            var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
+            
+            annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+            annotationView?.canShowCallout = true
+            
+            let btn = UIButton(type: .detailDisclosure)
+            annotationView?.rightCalloutAccessoryView = btn
+            
         }
         return annotationView
+    }
+    
+    // MARK: annotationView
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        let driverName = driver.name
+        
+        let ac = UIAlertController(title: "Driver", message: driverName, preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "OK", style: .default))
+        present(ac, animated: true)
     }
     
     @IBAction func locationButtonClicked(_ sender: UIButton) {
@@ -139,7 +181,7 @@ class ViewController: UIViewController, MKMapViewDelegate, UIGestureRecognizerDe
             state = .needNext
             if destinationTextField.placeholder?.trimmingCharacters(in: .whitespacesAndNewlines) == finalDestinationDefaultText {
                 return
-            } else {
+            } else if destinationCountry == "Соединённые Штаты Америки" {
                 let sourcePlacemark = MKPlacemark(coordinate: currentLocation!, addressDictionary: nil)
                 let destinationPlacemark = MKPlacemark(coordinate: finalDestinationCoordinate!, addressDictionary: nil)
                 
@@ -175,18 +217,29 @@ class ViewController: UIViewController, MKMapViewDelegate, UIGestureRecognizerDe
                     let rect = route.polyline.boundingMapRect
                     self.mapView.setRegion(MKCoordinateRegion(rect), animated: true)
                     
+                    let finalDestinationLocation = CLLocation(latitude: self.finalDestinationCoordinate!.latitude, longitude: self.finalDestinationCoordinate!.longitude)
+                    let userLocation = CLLocation(latitude: self.userCoordinate!.latitude, longitude: self.userCoordinate!.longitude)
+                    self.distance = Int(userLocation.distance(from: finalDestinationLocation))
+                    
                     UIView.animate(withDuration: 0.3, animations: {
                         self.navigationItem.rightBarButtonItem?.isHidden = true
                         self.destinationTextField.isHidden = true
                         self.yourLocationTextField.isHidden = true
                     })
-                    self.submitLocationButton.setTitle("Next", for: .normal)
                 }
                 mapView.isUserInteractionEnabled = false
+                self.submitLocationButton.setTitle("Next", for: .normal)
+            } else {
+                let ac = UIAlertController(title: "Routes not available", message: "We couldn't get you to this location, please try another one", preferredStyle: .alert)
+                ac.addAction(UIAlertAction(title: "OK", style: .default))
+                present(ac, animated: true)
+                resetDestination()
             }
         case .needNext:
             let secondViewController = self.storyboard?.instantiateViewController(withIdentifier: "ShopingDetailViewController") as? ShopingDetailViewController
+            secondViewController?.distance = distance ?? 0
             self.navigationController?.pushViewController(secondViewController!, animated: true)
+            
         }
     }
     
