@@ -1,6 +1,10 @@
 import UIKit
 import MapKit
 
+enum ControllerState {
+    case needRoute, needNext
+}
+
 class ViewController: UIViewController, MKMapViewDelegate, UIGestureRecognizerDelegate {
     @IBOutlet var yourLocationTextField: UITextField!
     @IBOutlet var submitLocationButton: UIButton!
@@ -12,9 +16,11 @@ class ViewController: UIViewController, MKMapViewDelegate, UIGestureRecognizerDe
     private var currentLocation: CLLocationCoordinate2D?
     private var finalDestinationCoordinate: CLLocationCoordinate2D?
     private let finalDestinationDefaultText: String = "To:"
+    private var state: ControllerState = .needRoute
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         mapView.delegate = self
         mapView.mapType = .mutedStandard
         
@@ -128,51 +134,59 @@ class ViewController: UIViewController, MKMapViewDelegate, UIGestureRecognizerDe
     }
     
     @IBAction func locationButtonClicked(_ sender: UIButton) {
-        if destinationTextField.placeholder?.trimmingCharacters(in: .whitespacesAndNewlines) == finalDestinationDefaultText {
-            return
-        } else {
-            let sourcePlacemark = MKPlacemark(coordinate: currentLocation!, addressDictionary: nil)
-            let destinationPlacemark = MKPlacemark(coordinate: finalDestinationCoordinate!, addressDictionary: nil)
-            
-            let sourceMapItem = MKMapItem(placemark: sourcePlacemark)
-            let destinationMapItem = MKMapItem(placemark: destinationPlacemark)
-            
-            let directionRequest = MKDirections.Request()
-            directionRequest.source = sourceMapItem
-            directionRequest.destination = destinationMapItem
-            directionRequest.transportType = .automobile
-            
-            let directions = MKDirections(request: directionRequest)
-            
-            directions.calculate {
-                (response, error) -> Void in
+        switch state {
+        case .needRoute:
+            state = .needNext
+            if destinationTextField.placeholder?.trimmingCharacters(in: .whitespacesAndNewlines) == finalDestinationDefaultText {
+                return
+            } else {
+                let sourcePlacemark = MKPlacemark(coordinate: currentLocation!, addressDictionary: nil)
+                let destinationPlacemark = MKPlacemark(coordinate: finalDestinationCoordinate!, addressDictionary: nil)
                 
-                guard let response = response else {
-                    if error != nil {
-                        let ac = UIAlertController(title: "Routes not available", message: "We couldn't get you to this location, please try another one", preferredStyle: .alert)
-                        ac.addAction(UIAlertAction(title: "OK", style: .default))
-                        self.present(ac, animated: true)
-                        self.resetDestination()
+                let sourceMapItem = MKMapItem(placemark: sourcePlacemark)
+                let destinationMapItem = MKMapItem(placemark: destinationPlacemark)
+                
+                let directionRequest = MKDirections.Request()
+                directionRequest.source = sourceMapItem
+                directionRequest.destination = destinationMapItem
+                directionRequest.transportType = .automobile
+                
+                let directions = MKDirections(request: directionRequest)
+                
+                directions.calculate {
+                    (response, error) -> Void in
+                    
+                    guard let response = response else {
+                        if error != nil {
+                            let ac = UIAlertController(title: "Routes not available", message: "We couldn't get you to this location,     please try another one", preferredStyle: .alert)
+                            ac.addAction(UIAlertAction(title: "OK", style: .default))
+                            self.present(ac, animated: true)
+                            self.resetDestination()
+                            return
+                        }
+                        
                         return
                     }
                     
-                    return
+                    let route = response.routes[0]
+                    
+                    self.mapView.addOverlay((route.polyline), level: MKOverlayLevel.aboveRoads)
+                    
+                    let rect = route.polyline.boundingMapRect
+                    self.mapView.setRegion(MKCoordinateRegion(rect), animated: true)
+                    
+                    UIView.animate(withDuration: 0.3, animations: {
+                        self.navigationItem.rightBarButtonItem?.isHidden = true
+                        self.destinationTextField.isHidden = true
+                        self.yourLocationTextField.isHidden = true
+                    })
+                    self.submitLocationButton.setTitle("Next", for: .normal)
                 }
-                
-                let route = response.routes[0]
-                
-                self.mapView.addOverlay((route.polyline), level: MKOverlayLevel.aboveRoads)
-                
-                let rect = route.polyline.boundingMapRect
-                self.mapView.setRegion(MKCoordinateRegion(rect), animated: true)
-                
-                UIView.animate(withDuration: 0.3, animations: {
-                    self.navigationItem.rightBarButtonItem?.isHidden = true
-                    self.destinationTextField.isHidden = true
-                    self.yourLocationTextField.isHidden = true
-                })
-                self.submitLocationButton.setTitle("Next", for: .normal)
+                mapView.isUserInteractionEnabled = false
             }
+        case .needNext:
+            let secondViewController = self.storyboard?.instantiateViewController(withIdentifier: "ShopingDetailViewController") as? ShopingDetailViewController
+            self.navigationController?.pushViewController(secondViewController!, animated: true)
         }
     }
     
