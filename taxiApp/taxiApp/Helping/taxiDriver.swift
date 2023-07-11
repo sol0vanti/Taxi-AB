@@ -1,10 +1,3 @@
-//
-//  taxiDriver.swift
-//  taxiApp
-//
-//  Created by Alex on 11.07.2023.
-//
-
 import UIKit
 import MapKit
 
