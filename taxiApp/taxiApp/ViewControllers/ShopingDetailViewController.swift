@@ -10,6 +10,7 @@ class ShopingDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.navigationBar.tintColor = UIColor.systemPink
         calculateDistance()
         calculatePrice()
     }
