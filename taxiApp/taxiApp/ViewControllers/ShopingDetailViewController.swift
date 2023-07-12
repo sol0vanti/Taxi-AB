@@ -9,7 +9,7 @@ class ShopingDetailViewController: UIViewController {
     @IBOutlet var totalPriceLabel: UILabel!
     @IBOutlet var distanceLabel: UILabel!
     
-    private var taxiTarif: Int?
+    private var taxiTarif = 52
     public var distance: Int = 0
     private var totalPrice: Int?
     private var additionPrice: Int?
@@ -17,7 +17,7 @@ class ShopingDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.tintColor = UIColor.systemPink
-        setPopupButton()
+        //setPopupButton()
         calculateDistance()
         calculatePrice()
         setUpTippingSlider()
@@ -52,7 +52,7 @@ class ShopingDetailViewController: UIViewController {
     }
     
     func calculatePrice() {
-        totalPrice = (distance * taxiTarif!)
+        totalPrice = (distance * taxiTarif)
     }
     
     func setUpTippingSlider() {

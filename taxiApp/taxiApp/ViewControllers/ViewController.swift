@@ -176,70 +176,72 @@ class ViewController: UIViewController, MKMapViewDelegate, UIGestureRecognizerDe
     }
     
     @IBAction func locationButtonClicked(_ sender: UIButton) {
-        switch state {
-        case .needRoute:
-            state = .needNext
-            if destinationTextField.placeholder?.trimmingCharacters(in: .whitespacesAndNewlines) == finalDestinationDefaultText {
-                return
-            } else if destinationCountry == "Соединённые Штаты Америки" {
-                let sourcePlacemark = MKPlacemark(coordinate: currentLocation!, addressDictionary: nil)
-                let destinationPlacemark = MKPlacemark(coordinate: finalDestinationCoordinate!, addressDictionary: nil)
-                
-                let sourceMapItem = MKMapItem(placemark: sourcePlacemark)
-                let destinationMapItem = MKMapItem(placemark: destinationPlacemark)
-                
-                let directionRequest = MKDirections.Request()
-                directionRequest.source = sourceMapItem
-                directionRequest.destination = destinationMapItem
-                directionRequest.transportType = .automobile
-                
-                let directions = MKDirections(request: directionRequest)
-                
-                directions.calculate {
-                    (response, error) -> Void in
+        if destinationTextField.placeholder?.trimmingCharacters(in: .whitespacesAndNewlines) == finalDestinationDefaultText {
+            return
+        } else {
+            switch state {
+            case .needRoute:
+                state = .needNext
+                if destinationCountry == "Соединённые Штаты Америки" {
+                    let sourcePlacemark = MKPlacemark(coordinate: currentLocation!, addressDictionary: nil)
+                    let destinationPlacemark = MKPlacemark(coordinate: finalDestinationCoordinate!, addressDictionary: nil)
                     
-                    guard let response = response else {
-                        if error != nil {
-                            let ac = UIAlertController(title: "Routes not available", message: "We couldn't get you to this location,     please try another one", preferredStyle: .alert)
-                            ac.addAction(UIAlertAction(title: "OK", style: .default))
-                            self.present(ac, animated: true)
-                            self.resetDestination()
+                    let sourceMapItem = MKMapItem(placemark: sourcePlacemark)
+                    let destinationMapItem = MKMapItem(placemark: destinationPlacemark)
+                    
+                    let directionRequest = MKDirections.Request()
+                    directionRequest.source = sourceMapItem
+                    directionRequest.destination = destinationMapItem
+                    directionRequest.transportType = .automobile
+                    
+                    let directions = MKDirections(request: directionRequest)
+                    
+                    directions.calculate {
+                        (response, error) -> Void in
+                        
+                        guard let response = response else {
+                            if error != nil {
+                                let ac = UIAlertController(title: "Routes not available", message: "We couldn't get you to this location,     please try another one", preferredStyle: .alert)
+                                ac.addAction(UIAlertAction(title: "OK", style: .default))
+                                self.present(ac, animated: true)
+                                self.resetDestination()
+                                return
+                            }
+                            
                             return
                         }
                         
-                        return
+                        let route = response.routes[0]
+                        
+                        self.mapView.addOverlay((route.polyline), level: MKOverlayLevel.aboveRoads)
+                        
+                        let rect = route.polyline.boundingMapRect
+                        self.mapView.setRegion(MKCoordinateRegion(rect), animated: true)
+                        
+                        let finalDestinationLocation = CLLocation(latitude: self.finalDestinationCoordinate!.latitude, longitude: self.finalDestinationCoordinate!.longitude)
+                        let userLocation = CLLocation(latitude: self.userCoordinate!.latitude, longitude: self.userCoordinate!.longitude)
+                        self.distance = Int(userLocation.distance(from: finalDestinationLocation))
+                        
+                        UIView.animate(withDuration: 0.3, animations: {
+                            self.navigationItem.rightBarButtonItem?.isHidden = true
+                            self.destinationTextField.isHidden = true
+                            self.yourLocationTextField.isHidden = true
+                        })
                     }
-                    
-                    let route = response.routes[0]
-                    
-                    self.mapView.addOverlay((route.polyline), level: MKOverlayLevel.aboveRoads)
-                    
-                    let rect = route.polyline.boundingMapRect
-                    self.mapView.setRegion(MKCoordinateRegion(rect), animated: true)
-                    
-                    let finalDestinationLocation = CLLocation(latitude: self.finalDestinationCoordinate!.latitude, longitude: self.finalDestinationCoordinate!.longitude)
-                    let userLocation = CLLocation(latitude: self.userCoordinate!.latitude, longitude: self.userCoordinate!.longitude)
-                    self.distance = Int(userLocation.distance(from: finalDestinationLocation))
-                    
-                    UIView.animate(withDuration: 0.3, animations: {
-                        self.navigationItem.rightBarButtonItem?.isHidden = true
-                        self.destinationTextField.isHidden = true
-                        self.yourLocationTextField.isHidden = true
-                    })
+                    mapView.isUserInteractionEnabled = false
+                    self.submitLocationButton.setTitle("Next", for: .normal)
+                } else {
+                    let ac = UIAlertController(title: "Routes not available", message: "We couldn't get you to this location, please try another one", preferredStyle: .alert)
+                    ac.addAction(UIAlertAction(title: "OK", style: .default))
+                    present(ac, animated: true)
+                    resetDestination()
                 }
-                mapView.isUserInteractionEnabled = false
-                self.submitLocationButton.setTitle("Next", for: .normal)
-            } else {
-                let ac = UIAlertController(title: "Routes not available", message: "We couldn't get you to this location, please try another one", preferredStyle: .alert)
-                ac.addAction(UIAlertAction(title: "OK", style: .default))
-                present(ac, animated: true)
-                resetDestination()
+            case .needNext:
+                let secondViewController = self.storyboard?.instantiateViewController(withIdentifier: "ShopingDetailViewController") as? ShopingDetailViewController
+                secondViewController?.distance = distance ?? 0
+                self.navigationController?.pushViewController(secondViewController!, animated: true)
+                
             }
-        case .needNext:
-            let secondViewController = self.storyboard?.instantiateViewController(withIdentifier: "ShopingDetailViewController") as? ShopingDetailViewController
-            secondViewController?.distance = distance ?? 0
-            self.navigationController?.pushViewController(secondViewController!, animated: true)
-            
         }
     }
     
