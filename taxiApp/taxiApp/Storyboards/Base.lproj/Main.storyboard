@@ -147,7 +147,7 @@
         <!--View Controller-->
         <scene sceneID="XeO-EI-VN9">
             <objects>
-                <viewController id="JEn-6w-00H" customClass="ViewController" customModule="taxiApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ViewController" id="JEn-6w-00H" customClass="ViewController" customModule="taxiApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="yBV-uj-5Fo">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

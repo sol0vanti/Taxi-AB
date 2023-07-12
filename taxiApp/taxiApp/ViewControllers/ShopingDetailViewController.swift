@@ -1,4 +1,6 @@
 import UIKit
+import Firebase
+import FirebaseFirestore
 
 class ShopingDetailViewController: UIViewController {
     @IBOutlet var timeInfoButton: UIButton!
@@ -70,12 +72,24 @@ class ShopingDetailViewController: UIViewController {
         calculateAdditionalPrice()
     }
     @IBAction func requestRideButtonClicked(_ sender: UIButton) {
-    }
-    @IBAction func timeInfoButtonClicked(_ sender: UIButton) {
+        let db = Firestore.firestore()
+        db.collection("drive-requests").addDocument(data: [
+            "Comment-for-a-driver": driverCommentTextField.text!,
+            "Distance-journey": distance,
+            "Money-paid": Int(tippingSlider.value)
+        ]) { (error) in
+            if error != nil {
+                print(String(describing: error))
+            } else {
+                let ac = UIAlertController(title: "Success", message: "Your ride was successfuly requested. We will let drivers see your request", preferredStyle: .alert)
+                ac.addAction(UIAlertAction(title: "OK", style: .default) { _ in
+                    let firstViewController = self.storyboard?.instantiateViewController(withIdentifier: "ViewController") as? ViewController
+                    self.navigationController?.pushViewController(firstViewController!, animated: true)
+                })
+                self.present(ac, animated: true)
+            }
+        }
+        func timeInfoButtonClicked(_ sender: UIButton) {
+        }
     }
 }
-
-//func calculatePrice() {
-//    totalPrice = (distance * taxiTarif) + Int(additionPrice!)
-//    totalPriceLabel.text = "\(totalPrice ?? 0)₴"
-//}
