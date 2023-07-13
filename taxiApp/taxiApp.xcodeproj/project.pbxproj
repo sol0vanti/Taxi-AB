@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		FA201E222A5D852E00DA3F4D /* taxiDriver.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA201E212A5D852E00DA3F4D /* taxiDriver.swift */; };
+		FA39879E2A606AF5005F314D /* WhatsNewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA39879D2A606AF5005F314D /* WhatsNewViewController.swift */; };
+		FA3987A02A606BC6005F314D /* TaxiDriverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA39879F2A606BC6005F314D /* TaxiDriverViewController.swift */; };
 		FA4F59DD2A5F4AEF00BC9197 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FA4F59DC2A5F4AEF00BC9197 /* GoogleService-Info.plist */; };
 		FA4F59E02A5F4C1D00BC9197 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = FA4F59DF2A5F4C1D00BC9197 /* FirebaseDatabase */; };
 		FA4F59E22A5F4C1D00BC9197 /* FirebaseDatabaseSwift in Frameworks */ = {isa = PBXBuildFile; productRef = FA4F59E12A5F4C1D00BC9197 /* FirebaseDatabaseSwift */; };
@@ -36,6 +38,8 @@
 
 /* Begin PBXFileReference section */
 		FA201E212A5D852E00DA3F4D /* taxiDriver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = taxiDriver.swift; sourceTree = "<group>"; };
+		FA39879D2A606AF5005F314D /* WhatsNewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatsNewViewController.swift; sourceTree = "<group>"; };
+		FA39879F2A606BC6005F314D /* TaxiDriverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaxiDriverViewController.swift; sourceTree = "<group>"; };
 		FA4F59DC2A5F4AEF00BC9197 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FA78DF5C2A5AA6CF005F4F5D /* taxiApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = taxiApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA78DF5F2A5AA6CF005F4F5D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -75,6 +79,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FA3987A12A606BCF005F314D /* Customer */ = {
+			isa = PBXGroup;
+			children = (
+				FA78DF632A5AA6CF005F4F5D /* ViewController.swift */,
+				FA83EB9B2A5B43550027FFDE /* ShopingDetailViewController.swift */,
+			);
+			path = Customer;
+			sourceTree = "<group>";
+		};
+		FA3987A22A606BD6005F314D /* Driver */ = {
+			isa = PBXGroup;
+			children = (
+				FA39879F2A606BC6005F314D /* TaxiDriverViewController.swift */,
+			);
+			path = Driver;
+			sourceTree = "<group>";
+		};
 		FA4F59D92A5F4AD300BC9197 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
@@ -132,8 +153,9 @@
 		FA83EB9D2A5B435A0027FFDE /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				FA78DF632A5AA6CF005F4F5D /* ViewController.swift */,
-				FA83EB9B2A5B43550027FFDE /* ShopingDetailViewController.swift */,
+				FA39879D2A606AF5005F314D /* WhatsNewViewController.swift */,
+				FA3987A22A606BD6005F314D /* Driver */,
+				FA3987A12A606BCF005F314D /* Customer */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -263,7 +285,9 @@
 				FA78DF602A5AA6CF005F4F5D /* AppDelegate.swift in Sources */,
 				FA83EB9C2A5B43550027FFDE /* ShopingDetailViewController.swift in Sources */,
 				FA201E222A5D852E00DA3F4D /* taxiDriver.swift in Sources */,
+				FA3987A02A606BC6005F314D /* TaxiDriverViewController.swift in Sources */,
 				FA78DF622A5AA6CF005F4F5D /* SceneDelegate.swift in Sources */,
+				FA39879E2A606AF5005F314D /* WhatsNewViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
