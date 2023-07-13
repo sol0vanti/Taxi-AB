@@ -147,7 +147,7 @@
         <!--View Controller-->
         <scene sceneID="XeO-EI-VN9">
             <objects>
-                <viewController id="JEn-6w-00H" customClass="ViewController" customModule="taxiApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ViewController" id="JEn-6w-00H" customClass="ViewController" customModule="taxiApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="yBV-uj-5Fo">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -232,22 +232,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" showsMenuAsPrimaryAction="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" changesSelectionAsPrimaryAction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="l80-I7-c8F">
-                                <rect key="frame" x="278" y="175" width="65" height="38.333333333333343"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="65" id="gfm-Ee-AfV"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
-                                <menu key="menu" id="Hi9-dp-n1q">
-                                    <children>
-                                        <command title="Item 1" id="b3h-9k-u2z"/>
-                                        <command title="Item 2" id="0qP-qK-0gI"/>
-                                    </children>
-                                </menu>
-                                <state key="normal" title="pick">
-                                    <color key="titleColor" systemColor="systemPinkColor"/>
-                                </state>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Distance:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kly-Pg-vd0">
                                 <rect key="frame" x="16" y="242.33333333333334" width="94" height="26.666666666666657"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="22"/>
@@ -297,6 +281,9 @@
                                     <imageReference key="image" image="clock.badge.questionmark" catalog="system" symbolScale="large"/>
                                     <color key="baseBackgroundColor" systemColor="systemPinkColor"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="timeInfoButtonClicked:" destination="TO6-QP-m1a" eventType="touchUpInside" id="ZQB-l4-xXG"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oiT-lC-l1K">
                                 <rect key="frame" x="16" y="728" width="281" height="70"/>
@@ -309,6 +296,9 @@
                                     <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <color key="baseBackgroundColor" systemColor="systemPinkColor"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="requestRideButtonClicked:" destination="TO6-QP-m1a" eventType="touchUpInside" id="QBD-Ok-Gkr"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tipping for the driver" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K6Q-9o-Q2a">
                                 <rect key="frame" x="16" y="366" width="156.33333333333334" height="20"/>
@@ -319,6 +309,9 @@
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="4AW-Uv-Lfe">
                                 <rect key="frame" x="14" y="406" width="365" height="31"/>
                                 <color key="tintColor" systemColor="systemPinkColor"/>
+                                <connections>
+                                    <action selector="tippingSliderHasChanged:" destination="TO6-QP-m1a" eventType="valueChanged" id="o05-6e-bhd"/>
+                                </connections>
                             </slider>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Low" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fr5-DS-rMZ">
                                 <rect key="frame" x="16" y="436" width="26" height="17"/>
@@ -338,22 +331,40 @@
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" showsMenuAsPrimaryAction="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" changesSelectionAsPrimaryAction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="E6g-qE-bcR">
+                                <rect key="frame" x="291" y="180" width="54" height="36"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
+                                <menu key="menu" id="DSv-kA-SGb">
+                                    <children>
+                                        <command title="Item 1" id="3Qt-LD-BgZ"/>
+                                        <command title="Item 2" id="Gkv-rX-HXC"/>
+                                    </children>
+                                </menu>
+                                <state key="normal" title="Button">
+                                    <color key="titleColor" systemColor="systemPinkColor"/>
+                                </state>
+                            </button>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please, write the comment for the driver, which contains more than 2 letters." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tww-Cv-dpl">
+                                <rect key="frame" x="16" y="608" width="361" height="28.666666666666629"/>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="12"/>
+                                <color key="textColor" systemColor="systemPinkColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Efl-Z2-ff9"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="Tww-Cv-dpl" secondAttribute="trailing" id="19w-s5-PJj"/>
                             <constraint firstItem="0ev-kz-qC9" firstAttribute="top" secondItem="HLt-aB-DLN" secondAttribute="bottom" constant="35" id="462-Bb-rFf"/>
                             <constraint firstItem="Efl-Z2-ff9" firstAttribute="bottom" secondItem="HwZ-Xe-Vd9" secondAttribute="bottom" constant="20" id="46U-2c-W8B"/>
                             <constraint firstAttribute="trailingMargin" secondItem="HwZ-Xe-Vd9" secondAttribute="trailing" id="5on-FG-gfg"/>
                             <constraint firstItem="O7o-5Y-Rai" firstAttribute="top" secondItem="4AW-Uv-Lfe" secondAttribute="bottom" id="6H5-ue-ASp"/>
-                            <constraint firstItem="Efl-Z2-ff9" firstAttribute="trailing" secondItem="l80-I7-c8F" secondAttribute="trailing" constant="50" id="6pB-uf-wml"/>
-                            <constraint firstItem="HLt-aB-DLN" firstAttribute="top" secondItem="l80-I7-c8F" secondAttribute="bottom" constant="35" id="7bk-Rw-KGR"/>
                             <constraint firstItem="r8Y-RW-mLe" firstAttribute="leading" secondItem="pn2-1w-3Q5" secondAttribute="leadingMargin" id="8sE-ui-PJl"/>
-                            <constraint firstItem="r6p-8i-1W6" firstAttribute="centerY" secondItem="l80-I7-c8F" secondAttribute="centerY" id="932-AM-eZs"/>
                             <constraint firstItem="HwZ-Xe-Vd9" firstAttribute="leading" secondItem="oiT-lC-l1K" secondAttribute="trailing" constant="10" id="ABN-g4-905"/>
-                            <constraint firstItem="l80-I7-c8F" firstAttribute="top" secondItem="Efl-Z2-ff9" secondAttribute="top" constant="20" id="CtZ-Ku-hLe"/>
                             <constraint firstItem="zZM-fk-02a" firstAttribute="top" secondItem="fr5-DS-rMZ" secondAttribute="bottom" constant="75" id="DYC-Wd-vTW"/>
                             <constraint firstItem="r6p-8i-1W6" firstAttribute="top" secondItem="Efl-Z2-ff9" secondAttribute="top" constant="26" id="DbD-3X-KQB"/>
+                            <constraint firstItem="E6g-qE-bcR" firstAttribute="top" secondItem="Efl-Z2-ff9" secondAttribute="top" constant="25" id="HB1-1v-x0b"/>
+                            <constraint firstItem="Tww-Cv-dpl" firstAttribute="leading" secondItem="pn2-1w-3Q5" secondAttribute="leadingMargin" id="Hrj-4f-fc1"/>
                             <constraint firstItem="4AW-Uv-Lfe" firstAttribute="leading" secondItem="pn2-1w-3Q5" secondAttribute="leadingMargin" id="N9h-2Q-1oa"/>
                             <constraint firstAttribute="trailingMargin" secondItem="r8Y-RW-mLe" secondAttribute="trailing" id="NIh-hb-zoH"/>
                             <constraint firstAttribute="trailing" secondItem="2rL-2v-SDQ" secondAttribute="trailing" id="OTe-tY-FQo"/>
@@ -365,12 +376,14 @@
                             <constraint firstAttribute="trailingMargin" secondItem="O7o-5Y-Rai" secondAttribute="trailing" id="bdM-mT-0o4"/>
                             <constraint firstItem="kly-Pg-vd0" firstAttribute="leading" secondItem="r6p-8i-1W6" secondAttribute="leading" id="csy-7x-XzR"/>
                             <constraint firstItem="Efl-Z2-ff9" firstAttribute="trailing" secondItem="0ev-kz-qC9" secondAttribute="trailing" constant="50" id="dt1-U0-sfF"/>
-                            <constraint firstItem="r6p-8i-1W6" firstAttribute="baseline" secondItem="l80-I7-c8F" secondAttribute="firstBaseline" id="fSM-bO-Emx"/>
+                            <constraint firstItem="Efl-Z2-ff9" firstAttribute="trailing" secondItem="E6g-qE-bcR" secondAttribute="trailing" constant="48" id="fB8-mT-lzW"/>
                             <constraint firstItem="fr5-DS-rMZ" firstAttribute="top" secondItem="4AW-Uv-Lfe" secondAttribute="bottom" id="fn6-eB-mmE"/>
                             <constraint firstItem="2rL-2v-SDQ" firstAttribute="leading" secondItem="pn2-1w-3Q5" secondAttribute="leadingMargin" id="g2j-yP-sRQ"/>
                             <constraint firstItem="K6Q-9o-Q2a" firstAttribute="leading" secondItem="pn2-1w-3Q5" secondAttribute="leadingMargin" id="gFd-CW-dfn"/>
                             <constraint firstItem="Efl-Z2-ff9" firstAttribute="trailing" secondItem="HLt-aB-DLN" secondAttribute="trailing" constant="50" id="gVn-DV-g0u"/>
                             <constraint firstItem="kly-Pg-vd0" firstAttribute="top" secondItem="r6p-8i-1W6" secondAttribute="bottom" constant="35" id="hFW-PX-aW0"/>
+                            <constraint firstItem="Tww-Cv-dpl" firstAttribute="top" secondItem="r8Y-RW-mLe" secondAttribute="bottom" constant="5" id="iG8-OK-KdB"/>
+                            <constraint firstItem="HLt-aB-DLN" firstAttribute="top" secondItem="E6g-qE-bcR" secondAttribute="bottom" constant="32.333333333333371" id="iZm-pJ-WqJ"/>
                             <constraint firstItem="4AW-Uv-Lfe" firstAttribute="top" secondItem="K6Q-9o-Q2a" secondAttribute="bottom" constant="20" id="neG-pf-UHq"/>
                             <constraint firstAttribute="trailingMargin" secondItem="4AW-Uv-Lfe" secondAttribute="trailing" id="q6v-Ew-gD9"/>
                             <constraint firstItem="oiT-lC-l1K" firstAttribute="leading" secondItem="pn2-1w-3Q5" secondAttribute="leadingMargin" id="qG7-jX-lzc"/>
@@ -383,12 +396,18 @@
                     <navigationItem key="navigationItem" title="Shoping Detail" id="1wg-aK-2fF"/>
                     <connections>
                         <outlet property="distanceLabel" destination="HLt-aB-DLN" id="fen-Zg-828"/>
+                        <outlet property="driverCommentTextField" destination="r8Y-RW-mLe" id="Roj-t7-oQ6"/>
+                        <outlet property="errorLabel" destination="Tww-Cv-dpl" id="8Fo-T8-rQS"/>
+                        <outlet property="requestRideButton" destination="oiT-lC-l1K" id="J8l-Wa-CrB"/>
+                        <outlet property="tarifChoseButton" destination="DSv-kA-SGb" id="SnK-gr-K9G"/>
+                        <outlet property="timeInfoButton" destination="HwZ-Xe-Vd9" id="ptk-yf-vvM"/>
+                        <outlet property="tippingSlider" destination="4AW-Uv-Lfe" id="nPU-tP-h47"/>
                         <outlet property="totalPriceLabel" destination="0ev-kz-qC9" id="Ug0-HO-5Z5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1nd-C5-STX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2985" y="349"/>
+            <point key="canvasLocation" x="2983.969465648855" y="348.59154929577466"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Nhe-iR-CGk">
