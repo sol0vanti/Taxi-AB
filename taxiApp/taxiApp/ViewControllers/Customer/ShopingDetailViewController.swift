@@ -61,9 +61,9 @@ class ShopingDetailViewController: UIViewController {
     }
     
     func setUpTippingSlider() {
-        tippingSlider.value = Float(totalPrice!) * 0.4
+        tippingSlider.value = Float(totalPrice!) * 0.2
         tippingSlider.minimumValue = Float(totalPrice!) * 0.2
-        tippingSlider.maximumValue = Float(totalPrice!) * 2.0
+        tippingSlider.maximumValue = Float(totalPrice!)
     }
     
     func calculateAdditionalPrice() {

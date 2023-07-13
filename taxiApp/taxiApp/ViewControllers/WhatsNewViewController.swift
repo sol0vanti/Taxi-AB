@@ -1,10 +1,3 @@
-//
-//  WhatsNewViewController.swift
-//  taxiApp
-//
-//  Created by Alex on 13.07.2023.
-//
-
 import UIKit
 
 class WhatsNewViewController: UIViewController {
@@ -12,11 +5,11 @@ class WhatsNewViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
     }
     
     @IBAction func continueButtonClicked(_ sender: UIButton) {
         let ac = UIAlertController(title: "Chose User", message: nil, preferredStyle: .alert)
+        
         ac.addAction(UIAlertAction(title: "Taxi Driver", style: .default) { _ in
             let driverViewController = self.storyboard?.instantiateViewController(withIdentifier: "TaxiDriverViewController") as? TaxiDriverViewController
             self.navigationController?.pushViewController(driverViewController!, animated: true)
@@ -25,6 +18,7 @@ class WhatsNewViewController: UIViewController {
             let customerViewController = self.storyboard?.instantiateViewController(withIdentifier: "ViewController") as? ViewController
             self.navigationController?.pushViewController(customerViewController!, animated: true)
         })
+        
         present(ac, animated: true)
     }
 }

@@ -15,6 +15,7 @@ class ViewController: UIViewController, MKMapViewDelegate, UIGestureRecognizerDe
     private var finalDestinationPin = MyPointAnnotation()
     private var finalDestinationCoordinate: CLLocationCoordinate2D?
     private let finalDestinationDefaultText: String = "To:"
+    private var yourLocationDefaultText: String = "From:"
     
     private var userPin = MyPointAnnotation()
     private var userCoordinate: CLLocationCoordinate2D?
@@ -25,6 +26,8 @@ class ViewController: UIViewController, MKMapViewDelegate, UIGestureRecognizerDe
     
     public var distance: Int?
     public var distanceToDriver: Int?
+    
+    private var addressString: String?
     
     let driver = taxiDriver(
         name: "Alex Balla",
@@ -44,9 +47,6 @@ class ViewController: UIViewController, MKMapViewDelegate, UIGestureRecognizerDe
         driverPin.identifier = driver.identifier
         mapView.addAnnotation(driverPin)
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "reset", style: .done, target: self, action: #selector(resetDestination))
-        navigationItem.rightBarButtonItem?.isHidden = true
-        
         LocationManager.shared.getUserLocation{ [weak self] location in
             DispatchQueue.main.async {
                 guard let strongSelf = self else { return }
@@ -59,8 +59,55 @@ class ViewController: UIViewController, MKMapViewDelegate, UIGestureRecognizerDe
                 self!.userPin.identifier = "current-location"
                 strongSelf.mapView.setRegion(MKCoordinateRegion(center: location.coordinate, span: MKCoordinateSpan(latitudeDelta: 0.7, longitudeDelta: 0.7)), animated: true)
                 strongSelf.mapView.addAnnotation(self!.userPin)
+                
+                let ceo: CLGeocoder = CLGeocoder()
+                let loc: CLLocation = CLLocation(latitude: self!.currentLocation!.latitude, longitude: self!.currentLocation!.longitude)
+                
+                ceo.reverseGeocodeLocation(loc, completionHandler: { [self](placemarks, error) in
+                    if (error != nil) {
+                        return
+                    }
+                    
+                    let pm = placemarks! as [CLPlacemark]
+                    if pm.count > 0 {
+                        let pm = placemarks![0]
+                        
+                        print(pm.country ?? "")
+                        print(pm.locality ?? "")
+                        print(pm.subLocality ?? "")
+                        print(pm.thoroughfare ?? "")
+                        print(pm.postalCode ?? "")
+                        print(pm.subThoroughfare ?? "")
+                        
+                        var addressString : String = ""
+                        
+                        if pm.subLocality != nil {
+                            addressString = addressString + pm.subLocality! + ", "
+                        }
+                        if pm.thoroughfare != nil {
+                            addressString = addressString + pm.thoroughfare! + ", "
+                        }
+                        if pm.locality != nil {
+                            addressString = addressString + pm.locality! + ", "
+                        }
+                        if pm.country != nil {
+                            addressString = addressString + pm.country! + ", "
+                        }
+                        if pm.postalCode != nil {
+                            addressString = addressString + pm.postalCode! + ", "
+                        }
+                        if pm.subThoroughfare != nil {
+                            addressString = addressString + pm.subThoroughfare! + "."
+                        }
+                        
+                        self!.yourLocationTextField.placeholder! = self!.yourLocationDefaultText + " " + addressString
+                    }
+                })
             }
         }
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "reset", style: .done, target: self, action: #selector(resetDestination))
+        navigationItem.rightBarButtonItem?.isHidden = true
         
         let onLongTapGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongTapGesture))
         self.mapView.addGestureRecognizer(onLongTapGesture)
@@ -201,7 +248,6 @@ class ViewController: UIViewController, MKMapViewDelegate, UIGestureRecognizerDe
                         let rect = route.polyline.boundingMapRect
                         self.mapView.setRegion(MKCoordinateRegion(rect), animated: true)
                         
-                        // MARK: calculate distance
                         let driverLocation = CLLocation(latitude: self.driver.coordinate.latitude, longitude: self.driver.coordinate.longitude)
                         
                         let finalDestinationLocation = CLLocation(latitude: self.finalDestinationCoordinate!.latitude, longitude: self.finalDestinationCoordinate!.longitude)

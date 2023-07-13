@@ -45,7 +45,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8AW-2r-vfD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="459" y="-350"/>
+            <point key="canvasLocation" x="2892" y="-733"/>
         </scene>
         <!--Whats New View Controller-->
         <scene sceneID="8KL-Ug-VOO">
@@ -197,10 +197,9 @@
                                 <standardMapConfiguration key="preferredConfiguration"/>
                             </mapView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ide-Gv-yLB">
-                                <rect key="frame" x="59" y="733" width="275" height="45"/>
+                                <rect key="frame" x="16" y="733" width="361" height="45"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="Ebd-eU-hpr"/>
-                                    <constraint firstAttribute="width" constant="275" id="jRj-U4-95r"/>
                                 </constraints>
                                 <color key="tintColor" systemColor="systemPinkColor"/>
                                 <state key="normal" title="Button"/>
@@ -213,19 +212,17 @@
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="To:" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="69N-2H-b4g">
-                                <rect key="frame" x="59" y="683" width="275" height="30"/>
+                                <rect key="frame" x="16" y="683" width="361" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="608-tD-NYA"/>
-                                    <constraint firstAttribute="width" constant="275" id="PN1-Hj-c4i"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="From: Your Location" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AKL-6M-mZh">
-                                <rect key="frame" x="96.666666666666686" y="633" width="200" height="30"/>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="From:" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AKL-6M-mZh">
+                                <rect key="frame" x="16" y="633" width="361" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="Eqe-FU-RMz"/>
-                                    <constraint firstAttribute="width" constant="200" id="lJH-OL-RgB"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -236,10 +233,16 @@
                         <constraints>
                             <constraint firstItem="ide-Gv-yLB" firstAttribute="centerX" secondItem="yBV-uj-5Fo" secondAttribute="centerX" id="1h5-Pe-Rm1"/>
                             <constraint firstItem="PDR-4F-eWv" firstAttribute="leading" secondItem="yBV-uj-5Fo" secondAttribute="leading" id="1nd-ul-eWq"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="69N-2H-b4g" secondAttribute="trailing" id="DWk-6l-mIV"/>
                             <constraint firstItem="PDR-4F-eWv" firstAttribute="bottom" secondItem="yBV-uj-5Fo" secondAttribute="bottom" id="Lpp-RW-b1q"/>
                             <constraint firstItem="ide-Gv-yLB" firstAttribute="top" secondItem="69N-2H-b4g" secondAttribute="bottom" constant="20" id="Mqo-9d-fg0"/>
+                            <constraint firstItem="ide-Gv-yLB" firstAttribute="leading" secondItem="yBV-uj-5Fo" secondAttribute="leadingMargin" id="TlD-qS-gpN"/>
                             <constraint firstItem="69N-2H-b4g" firstAttribute="centerX" secondItem="yBV-uj-5Fo" secondAttribute="centerX" id="TsR-wL-mf4"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="AKL-6M-mZh" secondAttribute="trailing" id="ami-Fh-wwK"/>
+                            <constraint firstItem="AKL-6M-mZh" firstAttribute="leading" secondItem="yBV-uj-5Fo" secondAttribute="leadingMargin" id="e8k-xP-1Ph"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ide-Gv-yLB" secondAttribute="trailing" id="fBE-L9-4Ko"/>
                             <constraint firstItem="ZgE-X5-oMp" firstAttribute="bottom" secondItem="ide-Gv-yLB" secondAttribute="bottom" constant="40" id="ggB-EZ-tUe"/>
+                            <constraint firstItem="69N-2H-b4g" firstAttribute="leading" secondItem="yBV-uj-5Fo" secondAttribute="leadingMargin" id="mBg-Rh-Jtv"/>
                             <constraint firstItem="69N-2H-b4g" firstAttribute="top" secondItem="AKL-6M-mZh" secondAttribute="bottom" constant="20" id="mQk-Vx-zP4"/>
                             <constraint firstItem="PDR-4F-eWv" firstAttribute="top" secondItem="yBV-uj-5Fo" secondAttribute="top" id="nm3-ei-grt"/>
                             <constraint firstItem="PDR-4F-eWv" firstAttribute="centerX" secondItem="yBV-uj-5Fo" secondAttribute="centerX" id="yWM-sA-o6U"/>
@@ -256,7 +259,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Woh-ov-3Fg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4838.9312977099235" y="-350"/>
+            <point key="canvasLocation" x="4839" y="27"/>
         </scene>
         <!--Shoping Detail-->
         <scene sceneID="IPj-XM-KAw">
@@ -447,7 +450,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1nd-C5-STX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4837.4045801526718" y="348.59154929577466"/>
+            <point key="canvasLocation" x="4839" y="808"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Nhe-iR-CGk">
@@ -465,7 +468,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NC4-63-Vt4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3912.2137404580153" y="-350"/>
+            <point key="canvasLocation" x="3911" y="27"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="tdM-nd-kLK">
@@ -483,7 +486,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F7S-e4-fDo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3910.6870229007632" y="348.59154929577466"/>
+            <point key="canvasLocation" x="3911" y="809"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Dh6-4A-iyG">
@@ -501,7 +504,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ioX-8G-Zgg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-529" y="-350"/>
+            <point key="canvasLocation" x="1966" y="-733"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="T14-wa-5Mn">
