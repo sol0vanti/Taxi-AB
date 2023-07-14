@@ -8,7 +8,7 @@
 </div>
 <h2>Preview</h2>
 <div align="center" style="margin: 30px;">
-  <img src="https://github.com/skxnz/Taxi-App/blob/skxnz-patch-1/App-preview-Images/Start-screen.png" alt="Start screen image">
+  <img height="125" src="https://github.com/skxnz/Taxi-App/blob/skxnz-patch-1/App-preview-Images/Start-screen.png" alt="Start screen image">
 </div>
 <h3>Features</h3>
 <ul>
