@@ -8,7 +8,7 @@
 </div>
 <h2>Preview</h2>
 <div align="center" style="margin: 30px;">
-  ![image]([https://user-images.githubusercontent.com/17109060/32149040-04f3125c-bd25-11e7-8003-66fd29bc18d4.png](https://github.com/skxnz/Taxi-App/blob/skxnz-patch-1/App-preview-Images/Start-screen.png))
+  <img src="https://github.com/skxnz/Taxi-App/blob/skxnz-patch-1/App-preview-Images/Start-screen.png" alt="Start screen image">
 </div>
 <h3>Features</h3>
 <ul>
