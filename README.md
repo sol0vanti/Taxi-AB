@@ -9,13 +9,17 @@
 </div>
 
 <h3> Related </h3>
-- Author: [@skxnz](https://github.com/skxnz)
-- Co-worker: [@Beaxhem](https://github.com/Beaxhem)
+<ul>
+<li> Author: [@skxnz](https://github.com/skxnz) </li>
+<li> Co-worker: [@Beaxhem](https://github.com/Beaxhem)</li>
+</ul>
 <h3>Features</h3>
-- Xcode,
-- UIKit,
-- MapKit,
-- Firebase,
-- In-app payment, etc...
+<ul>
+<li> Xcode,</li>
+<li> UIKit,</li>
+<li> MapKit,</li>
+<li> Firebase,</li>
+<li> In-app payment, etc...</li>
+</ul>
 
 And of course `Taxi AB` app itself is open source with a `public repository` on GitHub.
