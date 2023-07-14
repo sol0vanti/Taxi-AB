@@ -8,7 +8,11 @@
 </div>
 <h2>Preview</h2>
 <div align="center" style="margin: 30px;">
-  <img height="300" src="https://github.com/skxnz/Taxi-App/blob/skxnz-patch-1/App-preview-Images/Start-screen.png" alt="Start screen image">
+  <img height="400" src="https://github.com/skxnz/Taxi-App/blob/skxnz-patch-1/App-preview-Images/Start-screen.png" alt="Start screen">
+  <img height="400" src="https://github.com/skxnz/Taxi-App/blob/skxnz-patch-1/App-preview-Images/Person-location.png" alt="Person location">
+  <img height="400" src="https://github.com/skxnz/Taxi-App/blob/skxnz-patch-1/App-preview-Images/Final-destination-set.png" alt="Final destination set">
+  <img height="400" src="https://github.com/skxnz/Taxi-App/blob/skxnz-patch-1/App-preview-Images/Route-traced.png" alt="Route traced">
+  <img height="400" src="https://github.com/skxnz/Taxi-App/blob/skxnz-patch-1/App-preview-Images/Payment-screen.png" alt="Payment screen">
 </div>
 <h3>Features</h3>
 <ul>
