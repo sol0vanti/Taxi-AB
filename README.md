@@ -4,7 +4,8 @@
 [![forthebadge](http://forthebadge.com/images/badges/built-with-love.svg)](http://forthebadge.com)
 [![forthebadge](https://forthebadge.com/images/badges/for-you.svg)](https://forthebadge.com)
 
-This is an app which gets your _current location_. You can place an _annotation_ for your final destination and the app will automaticly draw a _route_ to it. Choose the _tarif, pay and enjoy_!
+**Taxi AB** is an app which gets your `current location`. You can place an `annotation` for your `final destination` and the app will automaticly draw a `route` to it. Choose the `tarif`, `driver tipping` and `custom comment`! All data is saved on `server`.
+
 ## Related
 - Author: [@skxnz](https://github.com/skxnz)
 - Co-worker: [@Beaxhem](https://github.com/Beaxhem)
