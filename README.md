@@ -15,4 +15,5 @@
 <li> Firebase,</li>
 <li> In-app payment, etc...</li>
 </ul>
+
 And of course `Taxi AB` app itself is open source with a `public repository` on GitHub.
