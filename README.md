@@ -25,8 +25,7 @@
 <li> Xcode,</li>
 <li> UIKit,</li>
 <li> MapKit,</li>
-<li> Firebase,</li>
-<li> In-app payment, etc...</li>
+<li> Firestore</li>
 </ul>
 
 And of course `Taxi AB` app itself is open source with a `public repository` on GitHub.
