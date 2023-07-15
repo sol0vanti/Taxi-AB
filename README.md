@@ -13,7 +13,7 @@
 
 **Taxi AB** is an app which gets your `current location`. You can place an `annotation` for your `final destination` and the app will automaticly draw a `route` to it. Choose the `tarif`, `driver tipping` and `custom comment`! All data is saved on `server`.
 </div>
-<h2>👀 App Preview</h2>
+<h2>👀 App Preview (13/07/2023: not current version)</h2>
 <div align="center" style="margin: 30px;">
   <img height="400" src="https://github.com/skxnz/Taxi-App/blob/main/App-preview-Images/Start-screen.png" alt="Start screen">
   <img height="400" src="https://github.com/skxnz/Taxi-App/blob/main/App-preview-Images/Person-location.png" alt="Person location">
