@@ -271,11 +271,13 @@ class ViewController: UIViewController, MKMapViewDelegate, UIGestureRecognizerDe
                     resetDestination()
                 }
             case .needNext:
-                let secondViewController = self.storyboard?.instantiateViewController(withIdentifier: "ShopingDetailViewController") as? ShopingDetailViewController
-                secondViewController?.distance = distance ?? 0
-                secondViewController?.distanceToDriver = distanceToDriver ?? 0
-                self.navigationController?.pushViewController(secondViewController!, animated: true)
-                
+                if let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ShopingDetailViewController") as? ShopingDetailViewController {
+                    viewController.distance = distance ?? 0
+                    viewController.distanceToDriver = distanceToDriver ?? 0
+                      if let navigator = navigationController {
+                          navigator.pushViewController(viewController, animated: true)
+                      }
+                  }
             }
         }
     }
