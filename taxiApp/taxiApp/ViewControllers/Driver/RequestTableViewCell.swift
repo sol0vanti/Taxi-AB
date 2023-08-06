@@ -8,7 +8,7 @@
 import UIKit
 
 class RequestTableViewCell: UITableViewCell {
-    @IBOutlet weak var comment: UILabel!
+    @IBOutlet weak var nickname: UILabel!
     @IBOutlet weak var journeyDistanceLabel: UILabel!
     @IBOutlet weak var fromLabel: UILabel!
     @IBOutlet weak var toLabel: UILabel!

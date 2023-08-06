@@ -7,6 +7,7 @@
 
 import UIKit
 import MapKit
+import Firebase
 
 enum SkipState {
     case customerLocation, destination
@@ -26,6 +27,8 @@ class RequestMapViewController: UIViewController, MKMapViewDelegate {
     private var destinationCoordinates: CLLocationCoordinate2D?
     
     let driverPin = MyPointAnnotation()
+    
+    public var userNickname: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -79,6 +82,19 @@ class RequestMapViewController: UIViewController, MKMapViewDelegate {
         case .customerLocation:
             state = .destination
             ViewController.driver.coordinate = userCoordinates!
+            let ac = UIAlertController(title: "Already?", message: "Do you see a client?", preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "No", style: .destructive) {_ in
+                let db = Firestore.firestore()
+                db.collection("drive-requests").whereField("orderid", isEqualTo: "\(documentId)").delete() { error in
+                    if let error = error {
+                        print(String(describing: error))
+                    } else {
+                        self.navigationController?.popViewController(animated: true)
+                    }
+                    
+                }
+            })
+            ac.addAction(UIAlertAction(title: "Yes", style: .default))
         case .destination:
             ViewController.driver.coordinate = destinationCoordinates!
         }

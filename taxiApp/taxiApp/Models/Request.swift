@@ -9,7 +9,7 @@ import Foundation
 
 struct Request: Identifiable {
     var id: String
-    var commentForDriver: String
+    var userNickname: String
     var distanceJourney: Int
     var distanceToCustomer: Int
     var moneyPaid: Int

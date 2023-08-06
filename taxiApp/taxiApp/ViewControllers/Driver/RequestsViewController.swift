@@ -58,8 +58,7 @@ class RequestsViewController: UIViewController, UITableViewDataSource, UITableVi
         cell.toLabel.text = "To: " + "\(request.to)"
         cell.journeyDistanceLabel.text! += " \(request.distanceJourney)km"
         cell.salaryLabel.text = "\(request.moneyPaid)₴"
-        cell.comment.text = request.commentForDriver
-        
+        cell.nickname.text = request.userNickname
         cell.followButtonClicked = { [weak self] in
             self?.followButtonClicked(indexPath)
         }
@@ -74,9 +73,8 @@ class RequestsViewController: UIViewController, UITableViewDataSource, UITableVi
         let request = requests[indexPath.row]
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "RequestMapViewController") as? RequestMapViewController
         vc!.userAddressString = request.from
-        print(vc!.userAddressString!)
         vc!.destinationAddressString = request.to
-        print(vc!.destinationAddressString!)
+        vc!.userNickname = request.userNickname
         self.navigationController?.pushViewController(vc!, animated: true)
     }
 }

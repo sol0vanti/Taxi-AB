@@ -7,7 +7,7 @@ class ShopingDetailViewController: UIViewController {
     @IBOutlet var billAmount: UILabel!
     @IBOutlet var timeInfoButton: UIButton!
     @IBOutlet var requestRideButton: UIButton!
-    @IBOutlet var driverCommentTextField: UITextField!
+    @IBOutlet var userNickname: UITextField!
     @IBOutlet var tippingSlider: UISlider!
     @IBOutlet var totalPriceLabel: UILabel!
     @IBOutlet var distanceLabel: UILabel!
@@ -63,14 +63,14 @@ class ShopingDetailViewController: UIViewController {
         calculateAdditionalPrice()
     }
     @IBAction func requestRideButtonClicked(_ sender: UIButton) {
-        if  driverCommentTextField.text!.count < 2 {
-            driverCommentTextField.layer.borderColor = UIColor.systemPink.cgColor
-            driverCommentTextField.layer.borderWidth = 1.5
+        if  userNickname.text!.count < 2 {
+            userNickname.layer.borderColor = UIColor.systemPink.cgColor
+            userNickname.layer.borderWidth = 1.5
             errorLabel.isHidden = false
         } else {
             let database = Firestore.firestore()
             database.collection("drive-requests").addDocument(data: [
-                "commentForDriver": driverCommentTextField.text!,
+                "userNickname": userNickname.text!,
                 "distanceJourney": distance,
                 "distanceToCustomer": distanceToCustomer,
                 "moneyPaid": Int(tippingSlider.value),

@@ -271,13 +271,13 @@
                                 <color key="textColor" systemColor="systemPinkColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Comment" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zZM-fk-02a">
-                                <rect key="frame" x="20" y="525.66666666666663" width="72.666666666666671" height="20"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User Information" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zZM-fk-02a">
+                                <rect key="frame" x="20.000000000000007" y="525.66666666666663" width="124.66666666666669" height="20"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="leading" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Comment for driver" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="r8Y-RW-mLe">
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="leading" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your nickname" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="r8Y-RW-mLe">
                                 <rect key="frame" x="20" y="560.66666666666663" width="353" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="pTM-K1-1Zi"/>
@@ -409,13 +409,13 @@
                     <connections>
                         <outlet property="billAmount" destination="nTJ-cf-CWc" id="pXM-i5-U5Z"/>
                         <outlet property="distanceLabel" destination="HLt-aB-DLN" id="fen-Zg-828"/>
-                        <outlet property="driverCommentTextField" destination="r8Y-RW-mLe" id="Roj-t7-oQ6"/>
                         <outlet property="errorLabel" destination="Tww-Cv-dpl" id="8Fo-T8-rQS"/>
                         <outlet property="requestRideButton" destination="oiT-lC-l1K" id="J8l-Wa-CrB"/>
                         <outlet property="timeInfoButton" destination="HwZ-Xe-Vd9" id="ptk-yf-vvM"/>
                         <outlet property="tip" destination="tfg-hr-any" id="wtt-Q6-XAM"/>
                         <outlet property="tippingSlider" destination="4AW-Uv-Lfe" id="nPU-tP-h47"/>
                         <outlet property="totalPriceLabel" destination="0ev-kz-qC9" id="Ug0-HO-5Z5"/>
+                        <outlet property="userNickname" destination="r8Y-RW-mLe" id="Roj-t7-oQ6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1nd-C5-STX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -522,7 +522,7 @@
                                                         <action selector="followButtonClicked:" destination="bms-is-a3F" eventType="touchUpInside" id="h66-jD-StB"/>
                                                     </connections>
                                                 </button>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="comment" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MPK-0D-FIi">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="nickname" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MPK-0D-FIi">
                                                     <rect key="frame" x="30" y="211.66666666666666" width="223" height="19.333333333333343"/>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                                     <nil key="textColor"/>
