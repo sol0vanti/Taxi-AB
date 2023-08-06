@@ -85,7 +85,7 @@ class RequestMapViewController: UIViewController, MKMapViewDelegate {
             let ac = UIAlertController(title: "Already?", message: "Do you see a client?", preferredStyle: .alert)
             ac.addAction(UIAlertAction(title: "No", style: .destructive) {_ in
                 let db = Firestore.firestore()
-                db.collection("drive-requests").whereField("orderid", isEqualTo: "\(documentId)").delete() { error in
+                db.collection("drive-requests").whereField("orderid", isEqualTo: "\(userNickname)").delete() { error in
                     if let error = error {
                         print(String(describing: error))
                     } else {
