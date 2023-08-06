@@ -29,7 +29,10 @@ class ViewController: UIViewController, MKMapViewDelegate, UIGestureRecognizerDe
     
     private var addressString: String?
     
-    let driver = taxiDriver(
+    public var currentLocationAddressString: String?
+    public var destinationLocationAddressString: String?
+    
+    static let driver = taxiDriver(
         name: "Alex Balla",
         coordinate: CLLocationCoordinate2D(latitude: 40.897032, longitude: -74.251874),
         identifier: "driver"
@@ -42,9 +45,9 @@ class ViewController: UIViewController, MKMapViewDelegate, UIGestureRecognizerDe
         mapView.mapType = .mutedStandard
         
         let driverPin = MyPointAnnotation()
-        driverPin.coordinate = driver.coordinate
+        driverPin.coordinate = ViewController.driver.coordinate
         driverPin.title = "Driver"
-        driverPin.identifier = driver.identifier
+        driverPin.identifier = ViewController.driver.identifier
         mapView.addAnnotation(driverPin)
         
         LocationManager.shared.getUserLocation{ [weak self] location in
@@ -100,6 +103,7 @@ class ViewController: UIViewController, MKMapViewDelegate, UIGestureRecognizerDe
                             addressString = addressString + pm.subThoroughfare! + "."
                         }
                         
+                        self?.currentLocationAddressString = addressString
                         self!.yourLocationTextField.placeholder! = self!.yourLocationDefaultText + " " + addressString
                     }
                 })
@@ -179,7 +183,7 @@ class ViewController: UIViewController, MKMapViewDelegate, UIGestureRecognizerDe
                             addressString = addressString + pm.subThoroughfare! + "."
                         }
                         
-                        print(addressString)
+                        self.destinationLocationAddressString = addressString
                         self.destinationTextField.placeholder! = finalDestinationDefaultText + " " + addressString
                         self.navigationItem.rightBarButtonItem?.isHidden = false
                     }
@@ -248,7 +252,7 @@ class ViewController: UIViewController, MKMapViewDelegate, UIGestureRecognizerDe
                         let rect = route.polyline.boundingMapRect
                         self.mapView.setRegion(MKCoordinateRegion(rect), animated: true)
                         
-                        let driverLocation = CLLocation(latitude: self.driver.coordinate.latitude, longitude: self.driver.coordinate.longitude)
+                        let driverLocation = CLLocation(latitude: ViewController.driver.coordinate.latitude, longitude: ViewController.driver.coordinate.longitude)
                         
                         let finalDestinationLocation = CLLocation(latitude: self.finalDestinationCoordinate!.latitude, longitude: self.finalDestinationCoordinate!.longitude)
                         let userLocation = CLLocation(latitude: self.userCoordinate!.latitude, longitude: self.userCoordinate!.longitude)
@@ -273,7 +277,9 @@ class ViewController: UIViewController, MKMapViewDelegate, UIGestureRecognizerDe
             case .needNext:
                 if let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ShopingDetailViewController") as? ShopingDetailViewController {
                     viewController.distance = distance ?? 0
-                    viewController.distanceToDriver = distanceToDriver ?? 0
+                    viewController.distanceToCustomer = distanceToDriver ?? 0
+                    viewController.from = currentLocationAddressString
+                    viewController.to = destinationLocationAddressString
                       if let navigator = navigationController {
                           navigator.pushViewController(viewController, animated: true)
                       }

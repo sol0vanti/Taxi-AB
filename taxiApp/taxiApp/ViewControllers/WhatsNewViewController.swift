@@ -11,7 +11,7 @@ class WhatsNewViewController: UIViewController {
         let ac = UIAlertController(title: "Chose User", message: nil, preferredStyle: .alert)
         
         ac.addAction(UIAlertAction(title: "Taxi Driver", style: .default) { _ in
-            let driverViewController = self.storyboard?.instantiateViewController(withIdentifier: "TabBar") as? tabBarViewController
+            let driverViewController = self.storyboard?.instantiateViewController(withIdentifier: "RequestsViewController") as? RequestsViewController
             self.navigationController?.pushViewController(driverViewController!, animated: true)
         })
         ac.addAction(UIAlertAction(title: "Customer", style: .default) { _ in
