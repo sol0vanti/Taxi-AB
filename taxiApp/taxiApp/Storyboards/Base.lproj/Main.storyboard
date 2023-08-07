@@ -520,6 +520,7 @@
                                                     </buttonConfiguration>
                                                     <connections>
                                                         <action selector="followButtonClicked:" destination="bms-is-a3F" eventType="touchUpInside" id="h66-jD-StB"/>
+                                                        <action selector="followButtonDidTap" destination="sDh-if-tpG" eventType="touchUpInside" id="jJs-aP-lht"/>
                                                     </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="nickname" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MPK-0D-FIi">
@@ -553,7 +554,6 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="comment" destination="MPK-0D-FIi" id="T3g-c7-mBe"/>
                                             <outlet property="distanceToCustomerLabel" destination="MMk-c9-2Tv" id="t7K-d8-TUu"/>
                                             <outlet property="fromLabel" destination="5wI-Xt-8Vt" id="W9y-BE-H6I"/>
                                             <outlet property="journeyDistanceLabel" destination="loE-j8-e5X" id="L9b-6b-1M8"/>

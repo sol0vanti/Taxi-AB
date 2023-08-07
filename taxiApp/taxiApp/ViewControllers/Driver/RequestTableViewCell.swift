@@ -15,4 +15,11 @@ class RequestTableViewCell: UITableViewCell {
     @IBOutlet weak var distanceToCustomerLabel: UILabel!
     @IBOutlet weak var salaryLabel: UILabel!
     @IBOutlet weak var pickButton: UIButton!
+
+    var followButtonClicked: (() -> Void)?
+
+    @IBAction func followButtonDidTap() {
+        followButtonClicked?()
+    }
+
 }

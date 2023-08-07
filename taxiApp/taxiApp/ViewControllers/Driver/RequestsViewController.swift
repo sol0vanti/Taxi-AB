@@ -31,7 +31,13 @@ class RequestsViewController: UIViewController, UITableViewDataSource, UITableVi
                 if let snapshot = snapshot {
                     DispatchQueue.main.async {
                         self.requests = snapshot.documents.map { d in
-                            return Request(id: d.documentID, commentForDriver: d["commentForDriver"] as? String ?? "", distanceJourney: d["distanceJourney"] as? Int ?? 0, distanceToCustomer: d["distanceToCustomer"] as? Int ?? 0, moneyPaid: d["moneyPaid"] as? Int ?? 0, from: d["from"] as? String ?? "", to: d["to"] as? String ?? "")
+                            Request(id: d.documentID,
+                                    userNickname: d["userNickname"] as? String ?? "",
+                                    distanceJourney: d["distanceJourney"] as? Int ?? 0,
+                                    distanceToCustomer: d["distanceToCustomer"] as? Int ?? 0,
+                                    moneyPaid: d["moneyPaid"] as? Int ?? 0,
+                                    from: d["from"] as? String ?? "",
+                                    to: d["to"] as? String ?? "")
                         }
                         self.table.reloadData()
                     }
@@ -60,7 +66,7 @@ class RequestsViewController: UIViewController, UITableViewDataSource, UITableVi
         cell.salaryLabel.text = "\(request.moneyPaid)₴"
         cell.nickname.text = request.userNickname
         cell.followButtonClicked = { [weak self] in
-            self?.followButtonClicked(indexPath)
+            self?.followButtonClicked(indexPath: indexPath)
         }
         return cell
     }
@@ -68,8 +74,8 @@ class RequestsViewController: UIViewController, UITableViewDataSource, UITableVi
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
-    
-    @IBAction func followButtonClicked(_ sender: UIButton) {
+
+    func followButtonClicked(indexPath: IndexPath) {
         let request = requests[indexPath.row]
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "RequestMapViewController") as? RequestMapViewController
         vc!.userAddressString = request.from
