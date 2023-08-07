@@ -37,7 +37,12 @@ class RequestsViewController: UIViewController, UITableViewDataSource, UITableVi
                                     distanceToCustomer: d["distanceToCustomer"] as? Int ?? 0,
                                     moneyPaid: d["moneyPaid"] as? Int ?? 0,
                                     from: d["from"] as? String ?? "",
-                                    to: d["to"] as? String ?? "")
+                                    to: d["to"] as? String ?? "",
+                                    userLongitude: d["userLongtitude"] as? Double ?? 0.00,
+                                    userLatitude: d["userLatitude"] as? Double ?? 0.00,
+                                    destinationLongitude: d["destinationLatitude"] as? Double ?? 0.00,
+                                    destinationLatitude: d["destinationLongtitude"] as? Double ?? 0.00
+                                    )
                         }
                         self.table.reloadData()
                     }
@@ -78,9 +83,11 @@ class RequestsViewController: UIViewController, UITableViewDataSource, UITableVi
     func followButtonClicked(indexPath: IndexPath) {
         let request = requests[indexPath.row]
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "RequestMapViewController") as? RequestMapViewController
-        vc!.userAddressString = request.from
-        vc!.destinationAddressString = request.to
         vc!.userNickname = request.userNickname
+        vc!.userLongitude = request.userLongitude
+        vc!.userLatitude = request.userLatitude
+        vc!.destinationLongitude = request.destinationLongitude
+        vc!.destinationLatitude = request.destinationLatitude
         self.navigationController?.pushViewController(vc!, animated: true)
     }
 }

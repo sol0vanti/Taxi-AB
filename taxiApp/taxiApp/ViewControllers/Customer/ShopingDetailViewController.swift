@@ -1,4 +1,5 @@
 import UIKit
+import CoreLocation
 import Firebase
 import FirebaseFirestore
 
@@ -21,6 +22,8 @@ class ShopingDetailViewController: UIViewController {
     private var additionPrice: Int?
     public var from: String?
     public var to: String?
+    public var userCoordinates: CLLocationCoordinate2D?
+    public var destinationCoordinates: CLLocationCoordinate2D?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -75,7 +78,11 @@ class ShopingDetailViewController: UIViewController {
                 "distanceToCustomer": distanceToCustomer,
                 "moneyPaid": Int(tippingSlider.value),
                 "from": from!,
-                "to": to!
+                "to": to!,
+                "userLongitude": userCoordinates?.longitude as Any,
+                "userLatitude": userCoordinates?.latitude as Any,
+                "destinationLongitude":destinationCoordinates?.longitude as Any,
+                "destinationLatitude": destinationCoordinates?.latitude as Any
             ]) { (error) in
                 if error != nil {
                     print(String(describing: error))

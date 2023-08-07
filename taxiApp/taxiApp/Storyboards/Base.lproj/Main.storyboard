@@ -519,8 +519,7 @@
                                                         <color key="baseBackgroundColor" systemColor="systemPinkColor"/>
                                                     </buttonConfiguration>
                                                     <connections>
-                                                        <action selector="followButtonClicked:" destination="bms-is-a3F" eventType="touchUpInside" id="h66-jD-StB"/>
-                                                        <action selector="followButtonDidTap" destination="sDh-if-tpG" eventType="touchUpInside" id="jJs-aP-lht"/>
+                                                        <action selector="followButtonDidTap" destination="sDh-if-tpG" eventType="touchUpInside" id="krH-X6-wfr"/>
                                                     </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="nickname" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MPK-0D-FIi">
@@ -557,6 +556,7 @@
                                             <outlet property="distanceToCustomerLabel" destination="MMk-c9-2Tv" id="t7K-d8-TUu"/>
                                             <outlet property="fromLabel" destination="5wI-Xt-8Vt" id="W9y-BE-H6I"/>
                                             <outlet property="journeyDistanceLabel" destination="loE-j8-e5X" id="L9b-6b-1M8"/>
+                                            <outlet property="nickname" destination="MPK-0D-FIi" id="Jmn-5Q-ZWp"/>
                                             <outlet property="pickButton" destination="f0M-FI-iEt" id="QY4-7v-cjr"/>
                                             <outlet property="salaryLabel" destination="MyY-ff-D8K" id="tQo-sy-iAN"/>
                                             <outlet property="toLabel" destination="BKq-Vb-vna" id="cDe-hC-9yc"/>
@@ -592,7 +592,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EdA-6m-VSJ">
-                                <rect key="frame" x="0.0" y="103" width="393" height="715"/>
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                                 <standardMapConfiguration key="preferredConfiguration"/>
                             </mapView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mrl-b2-Ia2">
@@ -614,8 +614,8 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="EdA-6m-VSJ" firstAttribute="leading" secondItem="gI3-Q1-3RG" secondAttribute="leading" id="2h0-pp-02e"/>
-                            <constraint firstItem="EdA-6m-VSJ" firstAttribute="top" secondItem="gI3-Q1-3RG" secondAttribute="top" id="a5i-GY-tDw"/>
-                            <constraint firstItem="gI3-Q1-3RG" firstAttribute="bottom" secondItem="EdA-6m-VSJ" secondAttribute="bottom" id="liQ-zq-oDD"/>
+                            <constraint firstItem="EdA-6m-VSJ" firstAttribute="top" secondItem="ItV-z1-tAR" secondAttribute="top" id="a5i-GY-tDw"/>
+                            <constraint firstAttribute="bottom" secondItem="EdA-6m-VSJ" secondAttribute="bottom" id="liQ-zq-oDD"/>
                             <constraint firstItem="gI3-Q1-3RG" firstAttribute="bottom" secondItem="mrl-b2-Ia2" secondAttribute="bottom" constant="20" id="mDa-hx-AVW"/>
                             <constraint firstItem="mrl-b2-Ia2" firstAttribute="centerX" secondItem="ItV-z1-tAR" secondAttribute="centerX" id="mUL-re-8ay"/>
                             <constraint firstItem="gI3-Q1-3RG" firstAttribute="trailing" secondItem="EdA-6m-VSJ" secondAttribute="trailing" id="wD0-07-5BD"/>

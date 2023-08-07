@@ -13,12 +13,12 @@ class ViewController: UIViewController, MKMapViewDelegate, UIGestureRecognizerDe
     
     private var finalDestinationSet: Bool = false
     private var finalDestinationPin = MyPointAnnotation()
-    private var finalDestinationCoordinate: CLLocationCoordinate2D?
+    public var finalDestinationCoordinate: CLLocationCoordinate2D?
     private let finalDestinationDefaultText: String = "To:"
     private var yourLocationDefaultText: String = "From:"
     
     private var userPin = MyPointAnnotation()
-    private var userCoordinate: CLLocationCoordinate2D?
+    public var userCoordinate: CLLocationCoordinate2D?
     
     private var currentLocation: CLLocationCoordinate2D?
     private var state: ControllerState = .needRoute
@@ -77,19 +77,10 @@ class ViewController: UIViewController, MKMapViewDelegate, UIGestureRecognizerDe
                         
                         print(pm.country ?? "")
                         print(pm.locality ?? "")
-                        print(pm.subLocality ?? "")
-                        print(pm.thoroughfare ?? "")
                         print(pm.postalCode ?? "")
-                        print(pm.subThoroughfare ?? "")
                         
                         var addressString : String = ""
                         
-                        if pm.subLocality != nil {
-                            addressString = addressString + pm.subLocality! + ", "
-                        }
-                        if pm.thoroughfare != nil {
-                            addressString = addressString + pm.thoroughfare! + ", "
-                        }
                         if pm.locality != nil {
                             addressString = addressString + pm.locality! + ", "
                         }
@@ -97,10 +88,7 @@ class ViewController: UIViewController, MKMapViewDelegate, UIGestureRecognizerDe
                             addressString = addressString + pm.country! + ", "
                         }
                         if pm.postalCode != nil {
-                            addressString = addressString + pm.postalCode! + ", "
-                        }
-                        if pm.subThoroughfare != nil {
-                            addressString = addressString + pm.subThoroughfare! + "."
+                            addressString = addressString + pm.postalCode! + "."
                         }
                         
                         self?.currentLocationAddressString = addressString
@@ -156,20 +144,11 @@ class ViewController: UIViewController, MKMapViewDelegate, UIGestureRecognizerDe
                         
                         print(pm.country ?? "")
                         print(pm.locality ?? "")
-                        print(pm.subLocality ?? "")
-                        print(pm.thoroughfare ?? "")
                         print(pm.postalCode ?? "")
-                        print(pm.subThoroughfare ?? "")
                         
                         var addressString : String = ""
                         destinationCountry = pm.country ?? "not a country"
                         
-                        if pm.subLocality != nil {
-                            addressString = addressString + pm.subLocality! + ", "
-                        }
-                        if pm.thoroughfare != nil {
-                            addressString = addressString + pm.thoroughfare! + ", "
-                        }
                         if pm.locality != nil {
                             addressString = addressString + pm.locality! + ", "
                         }
@@ -177,10 +156,7 @@ class ViewController: UIViewController, MKMapViewDelegate, UIGestureRecognizerDe
                             addressString = addressString + pm.country! + ", "
                         }
                         if pm.postalCode != nil {
-                            addressString = addressString + pm.postalCode! + ", "
-                        }
-                        if pm.subThoroughfare != nil {
-                            addressString = addressString + pm.subThoroughfare! + "."
+                            addressString = addressString + pm.postalCode! + "."
                         }
                         
                         self.destinationLocationAddressString = addressString
@@ -280,6 +256,8 @@ class ViewController: UIViewController, MKMapViewDelegate, UIGestureRecognizerDe
                     viewController.distanceToCustomer = distanceToDriver ?? 0
                     viewController.from = currentLocationAddressString
                     viewController.to = destinationLocationAddressString
+                    viewController.destinationCoordinates = finalDestinationCoordinate
+                    viewController.userCoordinates = userCoordinate
                       if let navigator = navigationController {
                           navigator.pushViewController(viewController, animated: true)
                       }

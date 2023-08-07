@@ -15,4 +15,8 @@ struct Request: Identifiable {
     var moneyPaid: Int
     var from: String
     var to: String
+    var userLongitude: Double
+    var userLatitude: Double
+    var destinationLongitude: Double
+    var destinationLatitude: Double
 }
