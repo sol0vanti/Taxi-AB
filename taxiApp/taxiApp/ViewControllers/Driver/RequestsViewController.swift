@@ -38,10 +38,10 @@ class RequestsViewController: UIViewController, UITableViewDataSource, UITableVi
                                     moneyPaid: d["moneyPaid"] as? Int ?? 0,
                                     from: d["from"] as? String ?? "",
                                     to: d["to"] as? String ?? "",
-                                    userLongitude: d["userLongtitude"] as? Double ?? 0.00,
+                                    userLongitude: d["userLongitude"] as? Double ?? 0.00,
                                     userLatitude: d["userLatitude"] as? Double ?? 0.00,
-                                    destinationLongitude: d["destinationLatitude"] as? Double ?? 0.00,
-                                    destinationLatitude: d["destinationLongtitude"] as? Double ?? 0.00
+                                    destinationLongitude: d["destinationLongitude"] as? Double ?? 0.00,
+                                    destinationLatitude: d["destinationLatitude"] as? Double ?? 0.00
                                     )
                         }
                         self.table.reloadData()

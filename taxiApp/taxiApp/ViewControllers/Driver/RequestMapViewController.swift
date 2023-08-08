@@ -48,15 +48,17 @@ class RequestMapViewController: UIViewController, MKMapViewDelegate {
         
         customerPin.coordinate = userCoordinate!
         customerPin.title = "Customer"
+        customerPin.identifier = "customer"
         
         destinationPin.coordinate = destinationCoordinate!
         destinationPin.title = "Destination"
+        destinationPin.identifier = "destination"
         mapView.addAnnotations([driverPin, customerPin, destinationPin])
     }
     
     func getCoordinates(){
-        userCoordinate = CLLocationCoordinate2DMake(userLatitude!,userLongitude!)
-        destinationCoordinate = CLLocationCoordinate2DMake(destinationLatitude!,destinationLongitude!)
+        userCoordinate = CLLocationCoordinate2D(latitude: userLatitude!, longitude: userLongitude!)
+        destinationCoordinate = CLLocationCoordinate2D(latitude: destinationLatitude!, longitude: destinationLongitude!)
     }
     
     @IBAction func skipButtonClicked(_ sender: UIButton) {
@@ -81,4 +83,20 @@ class RequestMapViewController: UIViewController, MKMapViewDelegate {
             ViewController.driver.coordinate = destinationCoordinate!
         }
     }
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        guard let annotation = annotation as? MyPointAnnotation else { return nil }
+        
+        let annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: "annotation")
+        if annotation.identifier == "customer" {
+            annotationView.markerTintColor = .systemPink
+        } else if annotation.identifier == "destination" {
+            annotationView.markerTintColor = .systemCyan
+        } else if annotation.identifier == "driver" {
+            annotationView.markerTintColor = .systemYellow
+        }
+        return annotationView
+    }
+    
+    
 }
