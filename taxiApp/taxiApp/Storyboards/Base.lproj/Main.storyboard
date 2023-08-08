@@ -602,11 +602,11 @@
                                     <constraint firstAttribute="width" constant="150" id="Q6d-wJ-ka7"/>
                                 </constraints>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="Skip">
+                                <buttonConfiguration key="configuration" style="filled" title="Check">
                                     <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="16"/>
                                 </buttonConfiguration>
                                 <connections>
-                                    <action selector="skipButtonClicked:" destination="ONl-gf-ei7" eventType="touchUpInside" id="ov0-AS-d45"/>
+                                    <action selector="skipButtonClicked:" destination="ONl-gf-ei7" eventType="touchUpInside" id="ATS-82-Ik9"/>
                                 </connections>
                             </button>
                         </subviews>
